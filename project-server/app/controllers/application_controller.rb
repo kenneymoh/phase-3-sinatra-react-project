@@ -24,9 +24,43 @@ class ApplicationController < Sinatra::Base
       breed: params[:breed],
       status: params[:status],
       age: params[:age],
-      image_url: params[:image_url]
-
+      image: params[:image]
     )
+    new_pet.to_json
+  end
+
+  get "/pets/:status" do
+    pets = Pet.find_by(params[:status])
+    pets.to_json
+  end
+
+  get "/pets/:name" do
+    pets = Pet.find_by(params[:name])
+    pets.to_json
+  end
+
+  get "/pets/:breed" do
+    pets = Pet.find_by(params[:breed])
+    pets.to_json
+  end
+
+  patch "/pets/:id" do
+    pets = Pet.find(params[:id])
+    pets.update(
+      name: params[:name],
+      description: params[:description],
+      breed: params[:breed],
+      status: params[:status],
+      age: params[:age],
+      image: params[:image]
+    )
+    pets.to_json
+  end
+
+  delete "/pets/:id" do
+    pets = Pet.find(params[:id])
+    pets.destroy
+    pets.to_json
   end
 
 end
