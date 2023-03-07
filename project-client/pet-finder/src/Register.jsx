@@ -1,37 +1,86 @@
-import React from 'react'
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function Register() {
+const Signup = ({ setIsAuthenticated }) => {
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:9292/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setIsAuthenticated(true);
+        navigate("/allmemes");
+      } else {
+        const errorData = await response.json();
+        console.log(errorData);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <div>Register</div>
-  )
-}
+    <div>
+      <form onSubmit={handleSubmit}>
+        <h1>Sign up</h1>
 
-export default Register
-// import React, { useState } from "react";
+        <label htmlFor="username">Username</label>
+        <input
+          id="username"
+          type="text"
+          name="username"
+          placeholder="Jane Doe"
+          value={formData.username}
+          onChange={handleChange}
+          required
+        />
 
-// export const Register = (props) => {
-//     const [email, setEmail] = useState('');
-//     const [pass, setPass] = useState('');
-//     const [name, setName] = useState('');
+        <label htmlFor="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          placeholder="janedoe@example.com"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
 
-//     const handleSubmit = (e) => {
-//         e.preventDefault();
-//         console.log(email);
-//     }
+        <label htmlFor="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          placeholder="******************"
+          required
+        />
 
-//     return (
-//         <div className="auth-form-container">
-//             <h2>Register</h2>
-//         <form className="register-form" onSubmit={handleSubmit}>
-//             <label htmlFor="name">Full name</label>
-//             <input value={name} name="name" onChange={(e) => setName(e.target.value)} id="name" placeholder="full Name" />
-//             <label htmlFor="email">email</label>
-//             <input value={email} onChange={(e) => setEmail(e.target.value)}type="email" placeholder="youremail@gmail.com" id="email" name="email" />
-//             <label htmlFor="password">password</label>
-//             <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
-//             <button type="submit">Log In</button>
-//         </form>
-//         <button className="link-btn" onClick={() => props.onFormSwitch('login')}>Already have an account? Login here.</button>
-//     </div>
-//     )
-// }
+        <button type="submit">Sign up</button>
+      </form>
+    </div>
+  );
+};
+
+export default Signup;
