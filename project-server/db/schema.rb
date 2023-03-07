@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2023_03_02_065020) do
     t.string "breed"
     t.string "status"
     t.integer "age"
-    t.string "image"
+    t.string "image_url"
   end
 
   create_table "users", force: :cascade do |t|
