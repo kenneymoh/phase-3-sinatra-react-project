@@ -1,13 +1,116 @@
-/* body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.organizationCards {
+  width: 2000px;
+  margin-left: 100px;
+  margin-top: 20px;
+  color: rgb(19, 245, 207);
+  background: #ddd;
+}
+.MainOrganizationCards {
+  position: relative;
+  color: white;
+  right: 153px;
+  width: 2500px;
+  margin-left: 170px;
+  margin-top: 27px;
+  background: radial-gradient(
+    circle,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(224, 34, 0, 1) 50%,
+    rgba(36, 116, 133, 0.6859122401847575) 100%
+  );
+}
+.individualCards {
+  width: 1680px;
+
+  height: 350px;
+  margin-left: 100px;
+  margin-top: 60px;
+}
+.SecondColumn {
+  position: relative;
+  z-index: 10;
+  left: 30px;
+  bottom: 20px;
+  right: 0;
+}
+.firstColumn {
+  position: relative;
+  z-index: 10;
+  right: 200px;
+  width: 400px;
+}
+.discover {
+  position: relative;
+  width: 1150px;
+  top: 50px;
+  margin-left: 20px;
+}
+.moreInfo {
+  width: 550px;
+  margin-left: 20px;
+  height: 570px;
+  position: relative;
+  z-index: 10;
+  bottom: 650px;
+  left: 1200px;
+}
+.WorkingHours {
+  position: relative;
+  margin-right: 200px;
+  z-index: 10;
+  font-size: large;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 2fr); /* two columns with equal width */
+}
+.CardLogos {
+  margin-left: 60px;
+}
+.detailed-page {
+  height: 1250px;
+}
+/* body {
+  background: radial-gradient(
+    circle,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(135, 0, 224, 1) 50%,
+    rgba(36, 116, 133, 0.6859122401847575) 100%
+  );
 } */
+.topmoreInfo {
+  width: 550px;
+  margin-left: 20px;
+  height: 200px;
+  position: relative;
+  z-index: 10;
+  bottom: 1150px;
+  left: 1200px;
+}
+.picture {
+  width: 520px;
+  position: relative;
+  margin-left: 0px;
+  z-index: 12;
+}
+.nav-logo{
+  width: 150px;
+  height: 100px;
+  border-radius: 10px;
+}
+.del-btn{
+  padding: 10px;
+  margin-right: auto;
+  background-color: red;
+  color: white;
+}
